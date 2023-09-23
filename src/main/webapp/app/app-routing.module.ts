@@ -17,7 +17,7 @@ import LoginComponent from './login/login.component';
         {
           path: '',
           component: HomeComponent,
-          title: 'home.title',
+          title: 'Welcome, Java Hipster!',
         },
         {
           path: '',
@@ -39,7 +39,7 @@ import LoginComponent from './login/login.component';
         {
           path: 'login',
           component: LoginComponent,
-          title: 'login.title',
+          title: 'Sign in',
         },
         {
           path: '',
