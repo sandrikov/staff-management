@@ -1,0 +1,15 @@
+{
+  "applications": "*",
+  "dto": "mapstruct",
+  "entityTableName": "role",
+  "fields": [
+    {
+      "fieldName": "roleName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "name": "Role",
+  "relationships": [],
+  "service": "serviceImpl"
+}
