@@ -1,12 +1,12 @@
 # This configuration is intended for development purpose, it's **your** responsibility to harden it for production
-name: staffmanagement
+name: staff
 services:
   postgresql:
     image: postgres:15.4
     # volumes:
-    #   - ~/volumes/jhipster/StaffManagement/postgresql/:/var/lib/postgresql/data/
+    #   - ~/volumes/jhipster/staff/postgresql/:/var/lib/postgresql/data/
     environment:
-      - POSTGRES_USER=StaffManagement
+      - POSTGRES_USER=staff
       - POSTGRES_PASSWORD=
       - POSTGRES_HOST_AUTH_METHOD=trust
     healthcheck:

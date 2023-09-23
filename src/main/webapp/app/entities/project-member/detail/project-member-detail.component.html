@@ -1,0 +1,54 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="projectMember">
+      <h2 data-cy="projectMemberDetailsHeading"><span>Project Member</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ projectMember.id }}</span>
+        </dd>
+        <dt><span>Start Date</span></dt>
+        <dd>
+          <span>{{ projectMember.startDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>End Date</span></dt>
+        <dd>
+          <span>{{ projectMember.endDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Project</span></dt>
+        <dd>
+          <div *ngIf="projectMember.project">
+            <a [routerLink]="['/project', projectMember.project.id, 'view']">{{ projectMember.project.projectName }}</a>
+          </div>
+        </dd>
+        <dt><span>Role</span></dt>
+        <dd>
+          <div *ngIf="projectMember.role">
+            <a [routerLink]="['/role', projectMember.role.id, 'view']">{{ projectMember.role.roleName }}</a>
+          </div>
+        </dd>
+        <dt><span>Employee</span></dt>
+        <dd>
+          <div *ngIf="projectMember.employee">
+            <a [routerLink]="['/employee', projectMember.employee.id, 'view']">{{ projectMember.employee.lastName }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/project-member', projectMember.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

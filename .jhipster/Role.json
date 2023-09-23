@@ -1,0 +1,17 @@
+{
+  "applications": ["staff"],
+  "changelogDate": "20230923195456",
+  "dto": "mapstruct",
+  "entityTableName": "role",
+  "fields": [
+    {
+      "fieldName": "roleName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "name": "Role",
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

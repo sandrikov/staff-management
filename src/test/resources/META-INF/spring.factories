@@ -1,2 +1,3 @@
 org.springframework.test.context.ContextCustomizerFactory = ru.otus.projectwork.\
-    staff.config.SqlTestContainersSpringContextCustomizerFactory
+    staff.config.SqlTestContainersSpringContextCustomizerFactory,ru.otus.\
+    coursework.staff.config.SqlTestContainersSpringContextCustomizerFactory
