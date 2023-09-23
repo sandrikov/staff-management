@@ -1,0 +1,21 @@
+{
+  "applications": "*",
+  "dto": "mapstruct",
+  "entityTableName": "project",
+  "fields": [
+    {
+      "fieldName": "projectName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "ProjectStatus",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "ACTIVE,CLOSED"
+    }
+  ],
+  "name": "Project",
+  "relationships": [],
+  "service": "serviceImpl"
+}
