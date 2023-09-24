@@ -1,0 +1,76 @@
+entity Department {
+	departmentName String required
+}
+
+entity Job {
+	jobTitle String required
+    //head Boolean required
+}
+
+entity Employee {
+	firstName String required
+	lastName String required
+	email String
+	phoneNumber String
+	username String
+	hireDate Instant
+	salary Long
+}
+
+entity JobHistory {
+	startDate Instant required
+	endDate Instant
+}
+
+entity Role {
+	roleName String required
+}
+
+entity Project {
+	projectName String required
+    status ProjectStatus required
+}
+
+entity ProjectMember {
+	startDate Instant required
+	endDate Instant
+}
+
+relationship OneToOne {
+	ProjectMember{project(projectName) required} to Project
+	ProjectMember{role(roleName)} to Role
+	ProjectMember{employee(lastName)} to Employee
+}
+
+enum ProjectStatus {
+    ACTIVE, CLOSED
+}
+
+//relationship ManyToMany {
+//	Job{task(title)} to Task{job}
+//}
+
+relationship OneToMany {
+	Employee to Job{employee(lastName)}
+	Department to Employee{department(departmentName)}
+}
+
+relationship ManyToOne {
+	Employee{manager(lastName)} to Employee
+}
+
+relationship OneToOne {
+	JobHistory{job(jobTitle)} to Job
+	JobHistory{department(departmentName)} to Department
+	JobHistory{employee(lastName)} to Employee
+}
+
+// Set pagination options
+//paginate JobHistory, Employee with infinite-scroll
+//paginate Job with pagination
+
+// Use Data Transfer Objects (DTO)
+dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl //except Employee, Job
