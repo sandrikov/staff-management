@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "staff-management": {
+    "staff": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -76,15 +76,15 @@
         "serve": {
           "builder": "@angular-builders/custom-webpack:dev-server",
           "options": {
-            "browserTarget": "staff-management:build:development",
+            "browserTarget": "staff:build:development",
             "port": 4200
           },
           "configurations": {
             "production": {
-              "browserTarget": "staff-management:build:production"
+              "browserTarget": "staff:build:production"
             },
             "development": {
-              "browserTarget": "staff-management:build:development"
+              "browserTarget": "staff:build:development"
             }
           },
           "defaultConfiguration": "development"
