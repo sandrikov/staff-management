@@ -1,0 +1,44 @@
+{
+  "applications": ["staff"],
+  "changelogDate": "20230924171647",
+  "dto": "mapstruct",
+  "entityTableName": "project_member",
+  "fields": [
+    {
+      "fieldName": "startDate",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "endDate",
+      "fieldType": "Instant"
+    }
+  ],
+  "name": "ProjectMember",
+  "relationships": [
+    {
+      "otherEntityField": "projectName",
+      "otherEntityName": "project",
+      "relationshipName": "project",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "roleName",
+      "otherEntityName": "role",
+      "relationshipName": "role",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityField": "lastName",
+      "otherEntityName": "employee",
+      "relationshipName": "employee",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

@@ -1,0 +1,128 @@
+<div>
+  <h2 id="page-heading" data-cy="ProjectMemberHeading">
+    <span>Project Members</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-project-member"
+        [routerLink]="['/project-member/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Create a new Project Member </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="projectMembers?.length === 0">
+    <span>No Project Members found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="projectMembers && projectMembers.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span>ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="startDate">
+            <div class="d-flex">
+              <span>Start Date</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="endDate">
+            <div class="d-flex">
+              <span>End Date</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="project.projectName">
+            <div class="d-flex">
+              <span>Project</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="role.roleName">
+            <div class="d-flex">
+              <span>Role</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="employee.lastName">
+            <div class="d-flex">
+              <span>Employee</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let projectMember of projectMembers; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/project-member', projectMember.id, 'view']">{{ projectMember.id }}</a>
+          </td>
+          <td>{{ projectMember.startDate | formatMediumDatetime }}</td>
+          <td>{{ projectMember.endDate | formatMediumDatetime }}</td>
+          <td>
+            <div *ngIf="projectMember.project">
+              <a [routerLink]="['/project', projectMember.project.id, 'view']">{{ projectMember.project.projectName }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="projectMember.role">
+              <a [routerLink]="['/role', projectMember.role.id, 'view']">{{ projectMember.role.roleName }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="projectMember.employee">
+              <a [routerLink]="['/employee', projectMember.employee.id, 'view']">{{ projectMember.employee.lastName }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/project-member', projectMember.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/project-member', projectMember.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(projectMember)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
